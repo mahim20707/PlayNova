@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>PlayNova Game</title>
+    <title>PlayNova Learn</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
 
@@ -9,29 +9,50 @@
 
 <div class="container">
 
-    <div class="character">🐼</div>
-
-    <h3>⭐ Score: <span id="score">0</span></h3>
-    <h4>Level: <span id="level">1</span></h4>
-
-    <div class="progressBar">
-        <div id="progress"></div>
+    <!-- 🌍 LANGUAGE SELECT -->
+    <div id="languageScreen">
+        <h2>🌍 Choose Language</h2>
+        <button onclick="setLanguage('english')">English</button>
+        <button onclick="setLanguage('hindi')">Hindi</button>
+        <button onclick="setLanguage('odia')">Odia</button>
     </div>
 
-    <h2 id="question"></h2>
-
-    <div class="options">
-        <button onclick="checkAnswer(0)" id="opt0"></button>
-        <button onclick="checkAnswer(1)" id="opt1"></button>
-        <button onclick="checkAnswer(2)" id="opt2"></button>
+    <!-- 📚 SUBJECT SELECT -->
+    <div id="subjectScreen" style="display:none;">
+        <h2>📚 Choose Subject</h2>
+        <button onclick="startGame('math')">🧮 Math</button>
+        <button onclick="startGame('english')">✍️ English</button>
+        <button onclick="startGame('science')">🔬 Science</button>
     </div>
 
-    <p id="result"></p>
-    <p id="reward"></p>
+    <!-- 🎮 GAME SCREEN -->
+    <div id="gameScreen" style="display:none;">
+
+        <div class="character">🐼</div>
+
+        <h3>⭐ Score: <span id="score">0</span></h3>
+        <h4>Level: <span id="level">1</span></h4>
+
+        <div class="progressBar">
+            <div id="progress"></div>
+        </div>
+
+        <h2 id="question"></h2>
+
+        <div class="options">
+            <button onclick="checkAnswer(0)" id="opt0"></button>
+            <button onclick="checkAnswer(1)" id="opt1"></button>
+            <button onclick="checkAnswer(2)" id="opt2"></button>
+        </div>
+
+        <p id="result"></p>
+        <p id="reward"></p>
+
+    </div>
 
 </div>
 
 <script src="/static/script.js"></script>
 
 </body>
-  </html>
+    </html>
