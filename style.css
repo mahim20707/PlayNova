@@ -1,0 +1,33 @@
+body {
+    margin: 0;
+    font-family: Arial;
+    background: linear-gradient(to right, #ff9a9e, #fad0c4);
+    text-align: center;
+}
+
+.container {
+    margin-top: 150px;
+}
+
+h1 {
+    font-size: 50px;
+    color: white;
+}
+
+p {
+    font-size: 20px;
+    color: white;
+}
+
+button {
+    padding: 15px 40px;
+    font-size: 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #ffcc00;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #ffaa00;
+}
