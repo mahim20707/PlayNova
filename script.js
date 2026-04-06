@@ -1,3 +1,4 @@
+let currentQuestion = {};
 let questions = [
     { q: "1 + 1 = ?", options: ["1", "2", "3"], answer: 1 },
     { q: "2 + 1 = ?", options: ["2", "3", "4"], answer: 1 },
