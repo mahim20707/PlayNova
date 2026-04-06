@@ -1,52 +1,92 @@
 body {
     margin: 0;
-    font-family: 'Comic Sans MS';
-    background: linear-gradient(to top, #6a11cb, #2575fc);
+    font-family: Arial;
+    background: linear-gradient(to right, #74ebd5, #ACB6E5);
     text-align: center;
-    color: white;
 }
 
+/* MAIN CONTAINER */
+.container {
+    margin-top: 50px;
+}
+
+/* 🐼 CHARACTER */
 .character {
     font-size: 60px;
     animation: bounce 1s infinite;
 }
 
 @keyframes bounce {
-    50% { transform: translateY(-10px); }
+    0% {transform: translateY(0);}
+    50% {transform: translateY(-10px);}
+    100% {transform: translateY(0);}
 }
 
-.progressBar {
-    width: 80%;
-    height: 20px;
-    background: #ddd;
-    margin: 10px auto;
-    border-radius: 20px;
+/* 🎮 QUESTION */
+#question {
+    font-size: 24px;
+    margin: 20px;
 }
 
-#progress {
-    height: 100%;
-    width: 0%;
-    background: limegreen;
-    border-radius: 20px;
-    transition: 0.5s;
-}
-
+/* 🔘 OPTIONS */
 .options button {
     display: block;
     margin: 10px auto;
     padding: 15px;
     width: 200px;
-    font-size: 20px;
-    border-radius: 15px;
+    font-size: 18px;
+    border-radius: 10px;
     border: none;
-    background: #ffcc00;
+    background-color: #ffffff;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-.options button:active {
-    transform: scale(0.9);
+.options button:hover {
+    background-color: #ffcc00;
+}
+
+/* 📊 PROGRESS BAR */
+.progressBar {
+    width: 80%;
+    height: 20px;
+    background: #ddd;
+    margin: 20px auto;
+    border-radius: 10px;
+}
+
+#progress {
+    height: 100%;
+    width: 0%;
+    background: #4caf50;
+    border-radius: 10px;
+}
+
+/* 📝 RESULT TEXT */
+#result {
+    font-size: 20px;
+    margin-top: 10px;
 }
 
 #reward {
-    color: yellow;
-    font-size: 24px;
-    }
+    font-size: 18px;
+    color: green;
+}
+
+/* 🌍 LANGUAGE + 📚 SUBJECT BUTTONS (NEW ADD) */
+#languageScreen button,
+#subjectScreen button {
+    margin: 10px;
+    padding: 15px 25px;
+    font-size: 18px;
+    border-radius: 12px;
+    border: none;
+    background: #ffcc00;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#languageScreen button:hover,
+#subjectScreen button:hover {
+    background: #ffaa00;
+}
