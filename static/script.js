@@ -4,92 +4,67 @@ let level = 1;
 let progress = 0;
 let currentSubject = "";
 let currentLanguage = "english";
+let questionCount = 0;
 
-// 🌍 QUESTIONS (MULTI-LANGUAGE)
+// ⏱️ TIME LIMIT (20 min)
+let timeLeft = 20 * 60;
+
+setInterval(() => {
+    timeLeft--;
+    if (timeLeft <= 0) {
+        alert("⏰ Time up! Ab rest karo 😊");
+        location.reload();
+    }
+}, 1000);
+
+// 🌙 NIGHT LOCK
+let hour = new Date().getHours();
+if (hour >= 22) {
+    alert("🌙 Sone ka time hai! Kal khelo 😊");
+}
+
+// QUESTIONS
 let questions = {
-
     english: {
-        math: [
-            { q: "2 + 3 = ?", options: ["4", "5", "6"], answer: 1 },
-            { q: "5 - 2 = ?", options: ["2", "3", "4"], answer: 1 }
-        ],
-        english: [
-            { q: "Apple starts with?", options: ["A", "B", "C"], answer: 0 },
-            { q: "Cat spelling?", options: ["C-A-T", "K-A-T", "C-O-T"], answer: 0 }
-        ],
-        science: [
-            { q: "Sun is a?", options: ["Planet", "Star", "Moon"], answer: 1 },
-            { q: "Water formula?", options: ["H2O", "CO2", "O2"], answer: 0 }
-        ]
+        math: [{ q: "2 + 3 = ?", options: ["4","5","6"], answer: 1 }],
+        english: [{ q: "Apple starts with?", options: ["A","B","C"], answer: 0 }],
+        science: [{ q: "Sun is a?", options: ["Planet","Star","Moon"], answer: 1 }]
     },
-
     hindi: {
-        math: [
-            { q: "2 + 3 = ?", options: ["4", "5", "6"], answer: 1 },
-            { q: "5 - 2 = ?", options: ["2", "3", "4"], answer: 1 }
-        ],
-        english: [
-            { q: "Apple kis se shuru hota hai?", options: ["A", "B", "C"], answer: 0 }
-        ],
-        science: [
-            { q: "Surya kya hai?", options: ["Graha", "Tara", "Chand"], answer: 1 }
-        ]
+        math: [{ q: "2 + 3 = ?", options: ["4","5","6"], answer: 1 }]
     },
-
     odia: {
-        math: [
-            { q: "2 + 3 = ?", options: ["4", "5", "6"], answer: 1 }
-        ],
-        english: [
-            { q: "Apple ra first letter kana?", options: ["A", "B", "C"], answer: 0 }
-        ],
-        science: [
-            { q: "Surya kana?", options: ["Planet", "Star", "Moon"], answer: 1 }
-        ]
+        math: [{ q: "2 + 3 = ?", options: ["4","5","6"], answer: 1 }]
     }
 };
 
-// 🌍 LANGUAGE SELECT
+// LANGUAGE
 function setLanguage(lang) {
     currentLanguage = lang;
-
     document.getElementById("languageScreen").style.display = "none";
     document.getElementById("subjectScreen").style.display = "block";
 }
 
-// ▶️ START GAME
+// START GAME
 function startGame(subject) {
     currentSubject = subject;
 
     document.getElementById("subjectScreen").style.display = "none";
     document.getElementById("gameScreen").style.display = "block";
 
-    score = 0;
-    level = 1;
-    progress = 0;
-
-    document.getElementById("score").innerText = score;
-    document.getElementById("level").innerText = level;
-    document.getElementById("progress").style.width = "0%";
-
     loadQuestion();
 }
 
-// 🔀 SHUFFLE
-function shuffleOptions(q) {
-    let opts = [...q.options];
-    let correct = opts[q.answer];
-    opts.sort(() => Math.random() - 0.5);
-    return { q: q.q, options: opts, answer: opts.indexOf(correct) };
+// BACK BUTTON
+function goBack() {
+    document.getElementById("gameScreen").style.display = "none";
+    document.getElementById("subjectScreen").style.display = "block";
 }
 
-// ❓ LOAD QUESTION
+// LOAD QUESTION
 function loadQuestion() {
     let subjectQ = questions[currentLanguage][currentSubject];
-
-    let q = shuffleOptions(
-        subjectQ[Math.floor(Math.random() * subjectQ.length)]
-    );
+    let q = subjectQ[Math.floor(Math.random() * subjectQ.length)];
 
     currentQuestion = q;
 
@@ -102,24 +77,21 @@ function loadQuestion() {
     document.getElementById("result").innerText = "";
 }
 
-// ✅ CHECK ANSWER
+// CHECK ANSWER
 function checkAnswer(i) {
+    questionCount++;
+
     if (i === currentQuestion.answer) {
         score += 10;
         progress += 25;
-
-        if (Math.random() > 0.7) {
-            let bonus = 20;
-            score += bonus;
-            document.getElementById("reward").innerText = "🎁 +" + bonus;
-        } else {
-            document.getElementById("reward").innerText = "";
-        }
-
         document.getElementById("result").innerText = "✅ Correct!";
     } else {
         document.getElementById("result").innerText = "❌ Try Again!";
-        document.getElementById("reward").innerText = "";
+    }
+
+    // BREAK REMINDER
+    if (questionCount % 5 === 0) {
+        alert("🧠 Break lo! Paani piyo 💧");
     }
 
     document.getElementById("score").innerText = score;
@@ -132,15 +104,5 @@ function checkAnswer(i) {
         alert("🎉 Level Up!");
     }
 
-    saveScore();
     setTimeout(loadQuestion, 1000);
-}
-
-// 💾 SAVE SCORE
-function saveScore() {
-    fetch("/save_score", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({score: score})
-    });
-             }
+        }
