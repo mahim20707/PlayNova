@@ -1,57 +1,72 @@
 body {
     margin: 0;
     font-family: Arial;
-    background: linear-gradient(to right, #74ebd5, #ACB6E5);
+    background: linear-gradient(135deg, #74ebd5, #ACB6E5);
     text-align: center;
 }
 
-/* MAIN CONTAINER */
+/* CONTAINER */
 .container {
     margin-top: 50px;
 }
 
-/* 🐼 CHARACTER */
-.character {
-    font-size: 60px;
-    animation: bounce 1s infinite;
+/* GLASS CARD */
+#gameScreen, #subjectScreen, #languageScreen {
+    backdrop-filter: blur(10px);
+    background: rgba(255,255,255,0.2);
+    padding: 20px;
+    border-radius: 20px;
+    width: 300px;
+    margin: auto;
 }
 
-@keyframes bounce {
-    0% {transform: translateY(0);}
-    50% {transform: translateY(-10px);}
-    100% {transform: translateY(0);}
-}
-
-/* 🎮 QUESTION */
-#question {
-    font-size: 24px;
-    margin: 20px;
-}
-
-/* 🔘 OPTIONS */
-.options button {
-    display: block;
-    margin: 10px auto;
-    padding: 15px;
-    width: 200px;
-    font-size: 18px;
-    border-radius: 10px;
+/* BUTTONS */
+button {
+    margin: 10px;
+    padding: 12px 20px;
+    border-radius: 12px;
     border: none;
-    background-color: #ffffff;
+    font-size: 16px;
     cursor: pointer;
+    background: #ffcc00;
     transition: 0.3s;
 }
 
-.options button:hover {
-    background-color: #ffcc00;
+button:hover {
+    background: #ffaa00;
+    transform: scale(1.05);
 }
 
-/* 📊 PROGRESS BAR */
+/* BACK BUTTON */
+.backBtn {
+    background: #ff6666;
+}
+
+/* CHARACTER */
+.character {
+    font-size: 70px;
+    animation: float 2s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% {transform: translateY(0);}
+    50% {transform: translateY(-15px);}
+    100% {transform: translateY(0);}
+}
+
+/* OPTIONS */
+.options button {
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+}
+
+/* PROGRESS */
 .progressBar {
     width: 80%;
-    height: 20px;
+    height: 15px;
     background: #ddd;
-    margin: 20px auto;
+    margin: 15px auto;
     border-radius: 10px;
 }
 
@@ -62,31 +77,11 @@ body {
     border-radius: 10px;
 }
 
-/* 📝 RESULT TEXT */
+/* TEXT */
 #result {
-    font-size: 20px;
-    margin-top: 10px;
+    font-size: 18px;
 }
 
 #reward {
-    font-size: 18px;
     color: green;
-}
-
-/* 🌍 LANGUAGE + 📚 SUBJECT BUTTONS (NEW ADD) */
-#languageScreen button,
-#subjectScreen button {
-    margin: 10px;
-    padding: 15px 25px;
-    font-size: 18px;
-    border-radius: 12px;
-    border: none;
-    background: #ffcc00;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-#languageScreen button:hover,
-#subjectScreen button:hover {
-    background: #ffaa00;
 }
